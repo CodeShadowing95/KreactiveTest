@@ -34,8 +34,8 @@ Cette application est une solution complète d'authentification utilisant **Reac
 ### 1. Cloner le dépôt
 
 ```sh
-git clone https://github.com/votre-repo/auth-app.git
-cd auth-app
+git clone https://github.com/CodeShadowing95/KreactiveTest.git
+cd KreactiveTest
 ```
 
 ### 2. Configuration du Backend
