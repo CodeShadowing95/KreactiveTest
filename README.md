@@ -1,5 +1,8 @@
 # README - Application d'Authentification
 
+## Aperçu de l'application
+![Aperçu de l'application](./public/readme-banner.png)
+
 ## Description
 
 Cette application est une solution complète d'authentification utilisant **React** pour le frontend et **Node.js avec Express et MongoDB** pour le backend. Elle permet aux utilisateurs de se connecter et d'accéder à une page protégée uniquement après authentification.
