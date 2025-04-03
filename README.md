@@ -47,6 +47,8 @@ cd server
 npm install
 ```
 
+Si l'installation ne fonctionne pas avec `npm install`, vous pouvez essayer avec `npm install --legacy-peer-deps` pour forcer l'installation des dépendances.
+
 #### b) Configuration de l’environnement
 
 Créez un fichier `.env` dans le dossier `server` et ajoutez :
