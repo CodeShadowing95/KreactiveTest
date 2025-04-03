@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
-const Auth = () => {
+
+const validateEmail = (email) => {
+  const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  return re.test(String(email).toLowerCase());
+}
+
+const Login = ({ setAuth }) => {
   const navigate = useNavigate();
   const [revealPassword, setRevealPassword] = useState(false);
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
-
-  const validateEmail = (email) => {
-    const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    return re.test(String(email).toLowerCase());
-  }
 
   const handleEmailValue = (e) => {
     const email_input = e.target.value;
@@ -41,25 +43,17 @@ const Auth = () => {
       setErrorEmail("");
       setErrorPassword("");
 
-      const response = await fetch("http://localhost:3000/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await axios.post("http://localhost:3000/user/login", formData);
 
-      const data = await response.json();
+      if (response.status === 200) {
+        localStorage.setItem("token", response.data.token);
+        setAuth(true);
+        navigate("/home");
 
-      if (data.error) {
-        throw new Error(data.error || "Une erreur s'est produite.");
+        return;
+      } else {
+        alert("Une erreur s'est produite.");
       }
-
-      localStorage.setItem("token", data.token);
-      alert(data.result);
-
-      navigate("/home");
-      return;
     }
 
     if (formData.email === "") {
@@ -161,4 +155,4 @@ const Auth = () => {
   )
 }
 
-export default Auth
+export default Login

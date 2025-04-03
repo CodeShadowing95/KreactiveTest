@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
 
 const UserSchema = new mongoose.Schema({
   email: {
@@ -13,8 +12,4 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-UserSchema.methods.comparePassword = function (password) {
-  return bcrypt.compare(password, this.password);
-}
-
-export default mongoose.model('users', UserSchema);
+export default mongoose.model('User', UserSchema);

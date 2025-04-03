@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { Auth, Home } from './pages';
+import Login from './components/Login';
+import { Home, ProtectedRoute } from './components';
 
 
 const App = () => {
-  const user = JSON.parse(localStorage.getItem('user'));
+  const [auth, setAuth] = useState(!!localStorage.getItem("token"));
 
   return (
     <Router>
       <Routes>
-        <Route path="/home" element={user ? <Home /> : <Navigate to="/auth" />} />
-        <Route path="/auth" exact element={<Auth />} />
-        <Route path="/auth" exact element={!user ? <Navigate to="/auth" /> : <Home />} />
+        <Route path="/" element={<Login setAuth={setAuth} />} />
+        <Route path="/home" element={<ProtectedRoute auth={auth}><Home /></ProtectedRoute>} />
       </Routes>
     </Router>
   )
