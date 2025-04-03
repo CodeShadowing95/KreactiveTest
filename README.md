@@ -91,6 +91,12 @@ L’application sera accessible sur `http://localhost:5173`.
 
 ---
 
+## Identifiants de connexion pour le test
+- Email : kreactive@gmail.com
+- Mot de passe : kreactive
+
+---
+
 ## Fonctionnalités principales
 
 - Authentification des utilisateurs avec JWT
