@@ -14,7 +14,7 @@ Cette application est une solution complète d'authentification utilisant **Reac
 - React
 - React Router
 - Axios
-- Tailwind CSS&#x20;
+- Tailwind CSS
 
 ### Backend
 
@@ -78,6 +78,8 @@ Le serveur sera accessible sur `http://localhost:3000`.
 cd frontend
 npm install
 ```
+
+Si l'installation ne fonctionne pas avec `npm install`, vous pouvez essayer avec `npm install --legacy-peer-deps` pour forcer l'installation des dépendances.
 
 #### b) Lancer l’application React
 
