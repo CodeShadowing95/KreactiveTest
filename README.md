@@ -1,7 +1,7 @@
 # README - Application d'Authentification
 
 ## Aperçu de l'application
-![Aperçu de l'application](./public/readme-banner.png)
+![Aperçu de l'application](./public/readme.png)
 
 ## Description
 
