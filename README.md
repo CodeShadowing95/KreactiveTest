@@ -3,6 +3,8 @@
 ## Aperçu de la démo
 [https://drive.google.com/file/d/1ti1Epy606X7ohLZD9NRXqU6EgwOQQ_rN/view?usp=sharing](https://drive.google.com/file/d/1ti1Epy606X7ohLZD9NRXqU6EgwOQQ_rN/view?usp=sharing)
 
+---
+
 ## Description
 
 Cette application est une solution complète d'authentification utilisant **React** pour le frontend et **Node.js avec Express et MongoDB** pour le backend. Elle permet aux utilisateurs de se connecter et d'accéder à une page protégée uniquement après authentification.
