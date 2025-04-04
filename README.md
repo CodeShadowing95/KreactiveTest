@@ -47,6 +47,8 @@ cd KreactiveTest
 
 #### a) Installation des dépendances
 
+Ouvrez un terminal depuis le dossier du projet et saisissez les commandes suivantes:
+
 ```sh
 cd server
 npm install
@@ -75,6 +77,8 @@ Le serveur sera accessible sur `http://localhost:3000`.
 ### 3. Configuration du Frontend
 
 #### a) Installation des dépendances
+
+Ouvrez un autre terminal toujours depuis le dossier du projet et saisissez les commandes suivantes:
 
 ```sh
 cd frontend
