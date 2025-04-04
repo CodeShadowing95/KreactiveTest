@@ -62,7 +62,7 @@ Créez un fichier `.env` dans le dossier `server` et ajoutez :
 
 ```env
 PORT=3000
-MONGO_URI=mongodb+srv://hwarblade:mPIAwvSyntmHwxNV@kreactivecluster.vjtuq.mongodb.net/?retryWrites=true&w=majority&appName=KreactiveCluster
+MONGO_DB_URI=mongodb+srv://hwarblade:mPIAwvSyntmHwxNV@kreactivecluster.vjtuq.mongodb.net/?retryWrites=true&w=majority&appName=KreactiveCluster
 JWT_SECRET=s6cr8qi
 ```
 
