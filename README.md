@@ -111,7 +111,7 @@ L’application sera accessible sur `http://localhost:5173`.
 ### **POST** `/login`
 
 - **Description** : Vérifie les identifiants de l'utilisateur et retourne un token.
-- **Body** : `{ email: "user@example.com", password: "password" }`
+- **Body** : `{ email: "<email_test>", password: "<password_test>" }`
 - **Response** : `{ token: "jwt_token" }`
 
 ### **GET** `/protected`
