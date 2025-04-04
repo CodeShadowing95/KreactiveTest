@@ -14,14 +14,16 @@ const Home = () => {
       </video>
       {/* Overlay */}
       <div className="fixed top-0 left-0 w-full h-full px-20 pt-10 pb-[100px] flex flex-col justify-between bg-gradient-to-r from-neutral-950 via-neutral-900/50 to-transparent">
-        <div className="w-full flex justify-between items-center gap-2 px-8 py-4 bg-white/50 rounded-full">
+        <div className="w-full flex justify-between items-center gap-2 px-8 py-4 bg-white/70 rounded-full">
           <div className="flex items-center gap-2">
             <img src="/logo-sub.png" alt="logo" className="w-10 h-10" />
             <p className="text-lg font-bold text-gray-900">KreactiveTest</p>
           </div>
 
           <ul className="flex items-center gap-10 text-sm font-medium text-gray-900">
-            <li>Accueil</li>
+            <li>
+              <a href="/home" target="_blank">Accueil</a>
+            </li>
             <li>
               <a href="https://github.com/CodeShadowing95/KreactiveTest" target="_blank">Documentation</a>
             </li>
@@ -38,7 +40,7 @@ const Home = () => {
 
         <div className="flex flex-col gap-4 motion-preset-slide-right ">
           <h1 className="text-6xl font-bold text-white max-w-lg">Bienvenue et merci pour la visite.</h1>
-          <p className="text-lg text-white/70 max-w-md">Merci pour votre temps et votre attention lors de la démo. J'espère que vous l'avez appréciée autant que j'ai pris plaisir à la présenter. Au plaisir d’échanger davantage ! 😊</p>
+          <p className=" text-white/70 max-w-md">Merci pour votre temps et votre attention lors de la démo. J'espère que vous l'avez appréciée autant que j'ai pris plaisir à la présenter. Au plaisir d’échanger davantage ! 😊</p>
           
           <div className="flex justify-between items-center w-[450px] max-w-md px-4 py-2 rounded-full bg-white mt-4">
             <div className="flex items-center gap-2">
