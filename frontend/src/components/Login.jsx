@@ -14,8 +14,22 @@ const Login = ({ setAuth }) => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
+  const [errorLogin, setErrorLogin] = useState("");
+
+  const handleChange = (e) => {
+    setErrorLogin("");
+
+    const name = e.target.name;
+
+    if (name === "email") {
+      handleEmailValue(e);
+    } else {
+      handlePasswordValue(e);
+    }
+  }
 
   const handleEmailValue = (e) => {
+    setErrorLogin("");
     const email_input = e.target.value;
 
     if (email_input === "") {
@@ -28,6 +42,17 @@ const Login = ({ setAuth }) => {
       setErrorEmail("");
     } else {
       setErrorEmail("Format de l'email invalide !");
+    }
+  }
+
+  const handlePasswordValue = (e) => {
+    const password_input = e.target.value;
+
+    if (password_input !== "") {
+      setFormData({ ...formData, password: password_input });
+      setErrorPassword("");
+    } else {
+      setErrorPassword("Mot de passe requis !");
     }
   }
   
@@ -43,21 +68,25 @@ const Login = ({ setAuth }) => {
       setErrorEmail("");
       setErrorPassword("");
 
-      const response = await axios.post("http://localhost:3000/user/login", formData);
-
-      if (response.status === 200) {
+      await axios.post("http://localhost:3000/user/login", formData)
+      .then(response => {
         localStorage.setItem("token", response.data.token);
         setAuth(true);
         navigate("/home");
+      })
+      .catch(error => {
+        if(error.response.status === 401) {
+          setErrorLogin("Adresse mail ou mot de passe incorrect(e) !");
+        } else {
+          setErrorLogin("Erreur survenue lors de la connexion !");
+        }
+      });
 
-        return;
-      } else {
-        alert("Une erreur s'est produite.");
-      }
+      return;
     }
 
     if (formData.email === "") {
-      setErrorEmail("Email requis !");
+      setErrorEmail("Une adresse mail valide est requise !");
     }
     if (formData.password === "") {
       setErrorPassword("Mot de passe requis !");
@@ -69,7 +98,7 @@ const Login = ({ setAuth }) => {
       {/* Navbar */}
       <nav className="w-full flex items-center justify-between py-8 px-20">
         <div className="flex justify-center items-center gap-2 motion-preset-blur-right ">
-          <div className="w-10 h-10 border border-gray-400 rounded-lg flex justify-center items-center overflow-hidden p-1 bg-gray-50/20 shadow-sm">
+          <div className="w-10 h-10 aspect-square rounded-lg flex justify-center items-center overflow-hidden p-1 bg-gray-50/20 shadow-sm">
             <img src="/logo-sub.png" alt="logo" className="w-full h-full object-contain" />
           </div>
           <h1 className="text-lg font-bold text-gray-900">Kreactive Test</h1>
@@ -77,21 +106,28 @@ const Login = ({ setAuth }) => {
       </nav>
 
       {/* Content */}
-      <div className="w-full h-[calc(100dvh-6.5rem)] flex justify-center items-center">
+      <div className="w-full h-[calc(100dvh-6.5rem)] flex justify-center items-center transition-all duration-300">
 
         {/* Login card */}
         <div className="w-full max-w-md flex flex-col gap-2 justify-center items-center p-8 rounded-3xl  bg-gradient-to-b from-transparent via-white/50 to-white shadow-sm border border-gray-300 motion-preset-pop">
           {/* Login icon */}
-          <div className="flex bg-white/50 rounded-3xl justify-center items-center p-4 shadow-xl">
+          <div className="flex bg-white/50 rounded-3xl justify-center items-center p-4 shadow-xl transition-all duration-300">
             <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Robot.png" alt="Robot" className="w-14 h-14" />
           </div>
           {/* <div className="w-14 h-14 rounded-2xl flex justify-center items-center overflow-hidden p-1 bg-white text-gray-800 shadow-xl flex-shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" x2="3" y1="12" y2="12"/></svg>
           </div> */}
 
+          {errorLogin && (
+            <div className="relative flex justify-center items-center gap-2 text-white text-sm bg-red-500 rounded-xl px-4 py-2 motion-opacity-in-0 motion-translate-y-in-100 motion-blur-in-md after:absolute after:-top-1.5 after:left-1/2 after:-translate-x-1/2 after:border-b-[10px] after:border-b-red-500 after:border-t-transparent after:border-l-[10px] after:border-l-transparent after:border-r-[10px] after:border-r-transparent">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+              {errorLogin}
+            </div>
+          )}
+
           {/* Title & Subtitle */}
-          <h1 className="text-2xl font-bold text-gray-900 mt-4">Connectez-vous par email</h1>
-          <p className="text-sm text-gray-500 max-w-sm text-center">Profitez d'une large gamme de services que Kreactive vous propose. Gratuitement et sans engagement.</p>
+          <h1 className="text-2xl font-bold text-gray-900 mt-4">Connexion à mon compte</h1>
+          <p className="text-sm text-gray-500 max-w-sm text-center">Accédez à votre compte dès maintenant pour profiter de nos services.</p>
 
           {/* Form */}
           <div className="w-full flex flex-col gap-4 mt-5">
@@ -101,7 +137,7 @@ const Login = ({ setAuth }) => {
                 <div className="absolute left-3 top-1/2 transform -translate-y-1/2 flex-shrink-0 align-middle">
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></svg>
                 </div>
-                <input type="email" name="email" placeholder="Email" className="pl-10 pr-4 py-2 bg-gray-200 text-sm rounded-lg shadow-sm outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 w-full" required onChange={handleEmailValue} />
+                <input type="email" name="email" placeholder="Email" className="pl-10 pr-4 py-2 bg-gray-200 text-sm rounded-lg shadow-sm outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 w-full" required onChange={handleChange} />
               </div>
               {errorEmail && (
                 <div className="flex items-center gap-1 text-red-500 mt-1">
@@ -117,7 +153,7 @@ const Login = ({ setAuth }) => {
                 <div className="absolute left-3 top-1/2 transform -translate-y-1/2 flex-shrink-0 align-middle">
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="16" r="1"/><rect x="3" y="10" width="18" height="12" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></svg>
                 </div>
-                <input type={revealPassword ? 'text' : 'password'} name="password" placeholder="Mot de passe" className="pl-10 pr-4 py-2 bg-gray-200 text-sm rounded-lg shadow-sm outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 w-full" required onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
+                <input type={revealPassword ? 'text' : 'password'} name="password" placeholder="Mot de passe" className="pl-10 pr-4 py-2 bg-gray-200 text-sm rounded-lg shadow-sm outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 w-full" required onChange={handleChange} />
                 <button className="absolute right-3 top-1/2 transform -translate-y-1/2 flex-shrink-0 align-middle outline-none border-none" onClick={handleRevealPassword}>
                   {revealPassword ?
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
@@ -140,7 +176,7 @@ const Login = ({ setAuth }) => {
             >
               <span className="flex items-center space-x-2">
                 <svg xmlns="http://www.w3.org/2000/svg"className="w-5 h-5 text-purple-500 group-hover:text-white transition-colors duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="16" r="1"/><rect width="18" height="12" x="3" y="10" rx="2"/><path d="M7 10V7a5 5 0 0 1 9.33-2.5"/></svg>
-                <span>Connexion</span>
+                <span>Se connecter</span>
               </span>
               <span
                 className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-purple-500/20 to-indigo-500/20"
