@@ -101,7 +101,7 @@ const Login = ({ setAuth }) => {
           <div className="w-10 h-10 aspect-square rounded-lg flex justify-center items-center overflow-hidden p-1 bg-gray-50/20 shadow-sm">
             <img src="/logo-sub.png" alt="logo" className="w-full h-full object-contain" />
           </div>
-          <h1 className="text-lg font-bold text-gray-900">Kreactive Test</h1>
+          <h1 className="text-lg font-semibold text-gray-900">KreactiveTest</h1>
         </div>
       </nav>
 
