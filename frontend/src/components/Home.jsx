@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Home = () => {
+
+  const [toggleProfileCard, setToggleProfileCard] = useState(2);
 
   const logout = () => {
     localStorage.removeItem('token');
@@ -28,7 +30,10 @@ const Home = () => {
               <a href="https://github.com/CodeShadowing95/KreactiveTest" target="_blank">Documentation</a>
             </li>
             <li>
-              <a href="/home">Services</a>
+              <a href="https://patricknamegni.vercel.app/" target="_blank">Portfolio</a>
+            </li>
+            <li>
+              <button onClick={() => setToggleProfileCard(1)}>Crédits</button>
             </li>
           </ul>
 
@@ -40,7 +45,7 @@ const Home = () => {
 
         <div className="flex flex-col gap-4 motion-preset-slide-right ">
           <h1 className="text-6xl font-bold text-white max-w-lg">Bienvenue et merci pour la visite.</h1>
-          <p className=" text-white/70 max-w-md">Merci pour votre temps et votre attention lors de la démo. J'espère que vous l'avez appréciée autant que j'ai pris plaisir à la présenter. Au plaisir d’échanger davantage ! 😊</p>
+          <p className="text-white/70 max-w-md">Merci pour votre temps et votre attention lors de la démo. J'espère que vous l'avez appréciée autant que j'ai pris plaisir à la présenter. Au plaisir d’échanger davantage ! 😊</p>
           
           <div className="flex justify-between items-center w-[450px] max-w-md px-4 py-2 rounded-full bg-white mt-4">
             <div className="flex items-center gap-2">
@@ -51,6 +56,48 @@ const Home = () => {
             </div>
             <button className="flex items-center justify-center w-10 h-10 flex-shrink-0 rounded-full bg-rose-500 hover:bg-rose-600 text-white font-medium text-sm" onClick={logout}>
               <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Right card */}
+        <div className={`absolute top-1/2 right-4 -translate-y-1/2 w-[350px] h-[400px] flex flex-col justify-between rounded-3xl bg-white/70 backdrop-blur-md shadow-md shadow-black/30 border border-black/20 overflow-hidden group ${toggleProfileCard === 1 ? 'motion-opacity-in-0 motion-translate-x-in-100 motion-blur-in-md' : 'hidden'}`}>
+          <div className="w-full relative">
+            {/* Image on the top */}
+            <div className="w-full h-[200px] group-hover:h-1/3 bg-gradient-to-b from-neutral-900 to-neutral-800 flex items-center justify-center transition-all duration-300 ease-in-out">
+              <img src="/poke-bg.jpg" alt="logo" className="w-full h-full object-cover" />
+            </div>
+
+            {/* Rounded profile with thich border white */}
+            <div className="w-full flex flex-col items-center justify-center -mt-16 relative">
+              <img src="/profile.jpeg" alt="logo" className="w-28 h-28 rounded-full border-4 border-white/60 shadow-md shadow-black/30" />
+
+              {/* Name and job */}
+              <div className="flex flex-col items-center justify-center mt-2">
+                <p className="text-lg font-bold text-gray-900">Patrick Namegni</p>
+                <p className="text-[12px] font-medium text-gray-500">Développeur Fullstack JS</p>
+              </div>
+
+              {/* Description */}
+              <p className="text-[13px] leading-5 font-medium text-gray-900 text-center mt-4 px-8 italic">Test technique réalisé avec ❤️ pour un poste de Développeur Web en alternance chez <span className='font-bold'>Kreactive</span>.</p>
+
+              {/* Social links */}
+              <div className="flex items-center justify-center gap-4 mt-5">
+                <a href="https://www.linkedin.com/in/frank-patrick-namegni/" target="_blank" className="flex items-center justify-center w-10 h-10 rounded-full bg-white/50 shadow-sm overflow-hidden hover:bg-white transition-all duration-300">
+                  <img src="/linkedin.png" alt="linkedin" className="w-8 h-8" />
+                </a>
+                <a href="https://patricknamegni.vercel.app/" target="_blank" className="flex items-center justify-center w-12 h-12 rounded-full bg-white/50 shadow-sm overflow-hidden hover:bg-white transition-all duration-300">
+                  <img src="/website.png" alt="website" className="w-8 h-8" />
+                </a>
+                <a href="https://github.com/CodeShadowing95" target="_blank" className="flex items-center justify-center w-10 h-10 rounded-full bg-white/50 shadow-sm overflow-hidden hover:bg-white transition-all duration-300">
+                  <img src="/github.png" alt="github" className="w-8 h-8" />
+                </a>
+              </div>
+            </div>
+
+            {/* stylish close button */}
+            <button className="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/50 hover:bg-white transition-all duration-300 flex items-center justify-center" onClick={() => setToggleProfileCard(0)}>
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 18L18 6"/><path d="M6 6l12 12"/></svg>
             </button>
           </div>
         </div>
