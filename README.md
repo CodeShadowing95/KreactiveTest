@@ -2,7 +2,7 @@
 
 ## Aperçu de la démo
 [https://drive.google.com/file/d/1ti1Epy606X7ohLZD9NRXqU6EgwOQQ_rN/view?usp=sharing](https://drive.google.com/file/d/1ti1Epy606X7ohLZD9NRXqU6EgwOQQ_rN/view?usp=sharing)
-
+![Demo](/frontend/public/demo.png)
 ---
 
 ## Description
