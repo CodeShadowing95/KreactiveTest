@@ -79,7 +79,7 @@ Le serveur sera accessible sur `http://localhost:3000`.
 
 ### 3. Configuration du Frontend
 
-#### a) Installation des dépendances
+#### a) Installation des dépendances (Frontend)
 
 Ouvrez un autre terminal toujours depuis le dossier du projet et saisissez les commandes suivantes:
 
@@ -101,6 +101,7 @@ L’application sera accessible sur `http://localhost:5173`.
 ---
 
 ## Identifiants de connexion pour le test
+
 - Email : kreactive@gmail.com
 - Mot de passe : kreactive
 
