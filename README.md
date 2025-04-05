@@ -61,12 +61,16 @@ Si l'installation ne fonctionne pas avec `npm install`, vous pouvez essayer avec
 
 #### b) Configuration de l’environnement
 
-Créez un fichier `.env` dans le dossier `server` et ajoutez :
+Créez un fichier `.env` dans le dossier `server` et copier-collez les identifiants accessibles via ce lien:
+
+[Identifiants pour le fichier .env](https://docs.google.com/document/d/1Ol5NWgtooADMEPW-br1HjZJEF3q8wm3l1YnHM7jAPU0/edit?usp=sharing)
+
+Exemple:
 
 ```env
 PORT=3000
-MONGO_DB_URI=mongodb+srv://hwarblade:mPIAwvSyntmHwxNV@kreactivecluster.vjtuq.mongodb.net/?retryWrites=true&w=majority&appName=KreactiveCluster
-JWT_SECRET=s6cr8qi
+MONGO_DB_URI=mongodb+srv://<username>:<password>@<cluster-url>/<database>?retryWrites=true&w=majority
+JWT_SECRET=<your_jwt_secret>
 ```
 
 #### c) Lancer le serveur
