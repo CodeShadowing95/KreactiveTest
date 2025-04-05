@@ -61,7 +61,7 @@ Si l'installation ne fonctionne pas avec `npm install`, vous pouvez essayer avec
 
 #### b) Configuration de l’environnement
 
-Créez un fichier `.env` dans le dossier `server` et copier-collez les identifiants accessibles via ce lien:
+Créez un fichier `.env` dans le dossier `server` et copier-collez les identifiants accessibles via ce lien (j'ai donné l'accès au fichier à Sofia):
 
 [Identifiants pour le fichier .env](https://docs.google.com/document/d/1Ol5NWgtooADMEPW-br1HjZJEF3q8wm3l1YnHM7jAPU0/edit?usp=sharing)
 
